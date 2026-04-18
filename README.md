@@ -62,6 +62,13 @@ ADB cable (male):
 	       ------
 
 
+Troubleshooting
+---------------
+* **Caps Lock not working on macOS:** macOS has a built-in delay that ignores brief Caps Lock presses. Since ADB locking caps is converted to a short momentary USB press, macOS may not register it. Fix by disabling the delay:
+
+		hidutil property --set '{"CapsLockDelayOverride":0}'
+
+
 To do
 -----
 * Add media key support (volume, play/pause, etc.)

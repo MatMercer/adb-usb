@@ -1,8 +1,5 @@
 // Teensy setup and main loop
 
-// Minimum time between ADB polls
-enum { min_adb_ms = 12 }; // (83Hz) best for everything, and what Macs use
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <avr/io.h>
@@ -12,6 +9,12 @@ enum { min_adb_ms = 12 }; // (83Hz) best for everything, and what Macs use
 
 #define DEBUG( e )
 #include "config.h"
+
+// Minimum time between ADB polls
+#ifndef ADB_POLL_MS
+	#define ADB_POLL_MS 12
+#endif
+enum { min_adb_ms = ADB_POLL_MS };
 
 #include "adb_usb.h"
 

@@ -46,6 +46,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #define KC_SCLN KC_SCOLON
 #define KC_QUOT KC_QUOTE
 #define KC_APP  KC_APPLICATION
+#define KC_VOLU KC__VOLUP
+#define KC_VOLD KC__VOLDOWN
+#define KC_MUTE KC__MUTE
 #define KC_NUHS KC_NONUS_HASH
 #define KC_NUBS KC_NONUS_BSLASH
 #define KC_ERAS KC_ALT_ERASE,
