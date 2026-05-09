@@ -66,6 +66,32 @@ Troubleshooting
 ---------------
 * **Caps Lock not working on macOS:** macOS has a built-in delay that ignores brief Caps Lock presses. Since ADB locking caps is converted to a short momentary USB press, macOS may not register it. Fix by disabling the delay:
 
+```
+cat << EOF > ~/Library/LaunchAgents/com.user.capslockdelay.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.capslockdelay</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>hidutil</string>
+        <string>property</string>
+        <string>--set</string>
+        <string>{"CapsLockDelayOverride":0}</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+launchctl load ~/Library/LaunchAgents/com.user.capslockdelay.plist
+```
+
+This basically runs the below command everytime you login, essentially disabling the caps lock key delay that is on by default in Macbooks.
+
 		hidutil property --set '{"CapsLockDelayOverride":0}'
 
 
